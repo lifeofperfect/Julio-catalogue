@@ -27,3 +27,15 @@ C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\obj\Debug\net5.0\Catalogue.d
 C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\obj\Debug\net5.0\ref\Catalogue.dll
 C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\obj\Debug\net5.0\Catalogue.pdb
 C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\obj\Debug\net5.0\Catalogue.genruntimeconfig.cache
+C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\bin\Debug\net5.0\DnsClient.dll
+C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\bin\Debug\net5.0\MongoDB.Bson.dll
+C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\bin\Debug\net5.0\MongoDB.Driver.dll
+C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\bin\Debug\net5.0\MongoDB.Driver.Core.dll
+C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\bin\Debug\net5.0\MongoDB.Libmongocrypt.dll
+C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\bin\Debug\net5.0\SharpCompress.dll
+C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\bin\Debug\net5.0\runtimes\win\native\libzstd.dll
+C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\bin\Debug\net5.0\runtimes\win\native\snappy32.dll
+C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\bin\Debug\net5.0\runtimes\win\native\snappy64.dll
+C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\bin\Debug\net5.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\bin\Debug\net5.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\A240940\Desktop\csharp\Catalogue\Catalogue\bin\Debug\net5.0\runtimes\win\native\mongocrypt.dll
