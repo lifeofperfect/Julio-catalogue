@@ -45,5 +45,66 @@ namespace Catalogue.Controllers
 
             return item.AsDto();
         }
+
+        /// <summary>
+        /// POST /items
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult<ItemDto> CreateItem(CreateItemDto request)
+        {
+            Item item = new()
+            {
+                Id = Guid.NewGuid(),
+                Name = request.Name,
+                Price = request.Price,
+                CreatedDate = DateTimeOffset.UtcNow
+            };
+
+            _repository.CreateItem(item);
+
+            return CreatedAtAction(nameof(GetItem), new { id = item.Id }, item.AsDto());
+        }
+
+        /// <summary>
+        /// Put api/items/{id}
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public ActionResult UpdateItem(UpdateItemDto request)
+        {
+            var existingItem = _repository.GetItem(request.Id);
+
+            if (existingItem is null) return NotFound();
+
+            Item updatedItem = existingItem with
+            {
+                Name = request.Name,
+                Price = request.Price
+            };
+
+            _repository.UpdateItem(updatedItem);
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// DELETE api/items/{id]
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public ActionResult DeleteItem(Guid id)
+        {
+            var existingItem = _repository.GetItem(id);
+
+            if (existingItem is null) return NotFound();
+
+            _repository.DeleteItem(id);
+
+            return NoContent();
+        }
     }
 }
