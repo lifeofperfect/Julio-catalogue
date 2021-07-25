@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Catalogue.Repositories
 {
-    public class InMemoryItemsRepository
+    public class InMemoryItemsRepository : ITemsRepository
     {
         private readonly List<Item> items = new() //older versions ==> new List<Item>() {}
         {

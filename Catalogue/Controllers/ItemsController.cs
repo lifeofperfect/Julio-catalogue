@@ -1,4 +1,5 @@
-﻿using Catalogue.Entities;
+﻿using Catalogue.Dtos;
+using Catalogue.Entities;
 using Catalogue.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +14,10 @@ namespace Catalogue.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        private readonly InMemoryItemsRepository _repository;
-        public ItemsController()
+        private readonly ITemsRepository _repository;
+        public ItemsController(ITemsRepository repository)
         {
-            _repository = new InMemoryItemsRepository();
+            _repository = repository;
         }
 
         /// <summary>
@@ -24,9 +25,9 @@ namespace Catalogue.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<Item> GetItems()
+        public IEnumerable<ItemDto> GetItems()
         {
-            var items = _repository.GetItems();
+            var items = _repository.GetItems().Select(item => item.AsDto());
             return items;
         }
 
@@ -36,13 +37,13 @@ namespace Catalogue.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public ActionResult<Item> GetItem(Guid id)
+        public ActionResult<ItemDto> GetItem(Guid id)
         {
             var item = _repository.GetItem(id);
 
             if (item is null) return NotFound();
 
-            return item;
+            return item.AsDto();
         }
     }
 }
