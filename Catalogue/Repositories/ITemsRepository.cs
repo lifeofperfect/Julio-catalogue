@@ -8,10 +8,10 @@ namespace Catalogue.Repositories
 {
     public interface ITemsRepository
     {
-        IEnumerable<Item> GetItems();
-        Item GetItem(Guid id);
-        void CreateItem(Item item);
-        void UpdateItem(Item item);
-        void DeleteItem(Guid id);
+        Task<IEnumerable<Item>> GetItems();
+        Task<Item> GetItem(Guid id);
+        Task CreateItem(Item item);
+        Task UpdateItem(Item item);
+        Task DeleteItem(Guid id);
     }
 }

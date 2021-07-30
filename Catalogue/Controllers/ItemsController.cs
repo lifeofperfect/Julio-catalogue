@@ -25,9 +25,10 @@ namespace Catalogue.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<ItemDto> GetItems()
+        public async Task<IEnumerable<ItemDto>> GetItems()
         {
-            var items = _repository.GetItems().Select(item => item.AsDto());
+            var items =(await  _repository.GetItems())
+                            .Select(item => item.AsDto());
             return items;
         }
 
@@ -37,9 +38,9 @@ namespace Catalogue.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public ActionResult<ItemDto> GetItem(Guid id)
+        public async Task<ActionResult<ItemDto>> GetItem(Guid id)
         {
-            var item = _repository.GetItem(id);
+            var item =await _repository.GetItem(id);
 
             if (item is null) return NotFound();
 
@@ -52,7 +53,7 @@ namespace Catalogue.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult<ItemDto> CreateItem(CreateItemDto request)
+        public async Task<ActionResult<ItemDto>> CreateItem(CreateItemDto request)
         {
             Item item = new()
             {
@@ -62,7 +63,7 @@ namespace Catalogue.Controllers
                 CreatedDate = DateTimeOffset.UtcNow
             };
 
-            _repository.CreateItem(item);
+            await _repository.CreateItem(item);
 
             return CreatedAtAction(nameof(GetItem), new { id = item.Id }, item.AsDto());
         }
@@ -73,9 +74,9 @@ namespace Catalogue.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPut]
-        public ActionResult UpdateItem(UpdateItemDto request)
+        public async Task<ActionResult> UpdateItem(UpdateItemDto request)
         {
-            var existingItem = _repository.GetItem(request.Id);
+            var existingItem =await _repository.GetItem(request.Id);
 
             if (existingItem is null) return NotFound();
 
@@ -85,7 +86,7 @@ namespace Catalogue.Controllers
                 Price = request.Price
             };
 
-            _repository.UpdateItem(updatedItem);
+            await _repository.UpdateItem(updatedItem);
 
             return NoContent();
         }
@@ -96,13 +97,13 @@ namespace Catalogue.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        public ActionResult DeleteItem(Guid id)
+        public async Task<ActionResult> DeleteItem(Guid id)
         {
             var existingItem = _repository.GetItem(id);
 
             if (existingItem is null) return NotFound();
 
-            _repository.DeleteItem(id);
+            await _repository.DeleteItem(id);
 
             return NoContent();
         }
